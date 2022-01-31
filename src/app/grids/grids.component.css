@@ -1,0 +1,24 @@
+table {
+    width: 100%;
+    background-color:rgb(241, 240, 238) ;
+  }
+  td, th {
+    text-align: center !important;
+    vertical-align: middle !important;
+}
+
+.mat-sort-header-container {
+    justify-content: center !important;
+}
+
+.mat-header-cell {
+    background: rgb(204, 204, 204)
+}
+
+div {
+    display: block;
+    margin-bottom: 8px;
+    padding: 16px;
+    text-align: center;
+  }
+

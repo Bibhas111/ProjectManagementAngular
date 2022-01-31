@@ -1,0 +1,41 @@
+mat-grid-tile {
+    background: lightblue;
+  }
+  /* Add a black background color to the top navigation */
+.topnav {
+    background-color: #333;
+    overflow: hidden;
+  }
+  
+  /* Style the links inside the navigation bar */
+  .topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  
+  .mat-header-row, .mat-row {
+    min-height: 30px;
+  }
+
+  .column {
+    float: left;
+    width: 33.33%;
+    height: 200px;
+
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  .column:hover {
+    display: block;
+    background-color: red;
+  }

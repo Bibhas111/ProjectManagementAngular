@@ -1,0 +1,124 @@
+<app-topmenu></app-topmenu>
+
+
+<div style="width:70%;margin-left:200px;margin-top: 20px;background-color: white;">
+
+
+    <mat-card class="example-card">
+        <mat-card-title>CREATE PROJECT</mat-card-title>
+        <mat-card-subtitle>EPIROC</mat-card-subtitle>
+        <mat-card-content>
+
+            <p>
+                <mat-list>
+                    <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+
+                        <mat-list-item>
+                            <mat-label>
+                                <div style="margin-left: 60px ;margin-right: 85px;">Project Name</div>
+                            </mat-label>
+                            <input matInput placeholder="Ex. Project Name" id="ProjectName" name="ProjectName"
+                                formControlName="ProjectName"  style="width: 30%;margin-left: 2%;"  >
+
+                        </mat-list-item>
+
+                        <mat-divider></mat-divider>
+
+                        <mat-list-item>
+                            <mat-label>
+                                <div style="margin-left: 60px ;margin-right: 80px;">Project Status</div>
+                            </mat-label>
+                            <select style="width: 30%;margin-left: 2%;height: 40px;border-color: rgb(207, 202, 200);"
+                                formControlName="ProjectStaus" name="ProjectStaus">
+                                <option *ngFor="let status of statusdropdowm" [value]="status.value">
+                                    {{ status.viewValue }}
+                                </option>
+                            </select>
+
+                        </mat-list-item>
+                       
+                       
+                       
+                        <mat-divider></mat-divider>
+                       
+                       
+                       
+                        <mat-list-item>
+                            <mat-label>
+                                <div style="margin-left: 60px ;margin-right: 45px;">Project department</div>
+                            </mat-label>
+                            <select style="width: 30%;margin-left: 2%;height: 40px;border-color: rgb(207, 202, 200);"
+                                formControlName="Department" name="Department">
+                                <option *ngFor="let status of deptdropdown" [value]="status.value">
+                                    {{ status.viewValue }}
+                                </option>
+                            </select>
+
+                        </mat-list-item>
+                       
+                       
+                        <mat-divider> </mat-divider>
+
+                        <mat-list-item>
+                            <mat-label>
+                                <div style="margin-left: 60px ;margin-right: 90px;">Project Cost: </div>
+                            </mat-label>
+                            <input matInput placeholder="Ex. Hik" id="Project Cost" name="ProjectCost"
+                                formControlName="ProjectCost" style="width: 30%;margin-left: 2%;">
+                        </mat-list-item>
+                
+                
+                        <mat-divider></mat-divider>
+
+                        <mat-list-item>
+                            <mat-label>
+                                <div style="margin-left: 60px ;margin-right: 90px;">Project Hour: </div>
+                            </mat-label>
+                            <input matInput placeholder="Ex. Hik" id="Project Cost" name="ProjectHr"
+                                formControlName="ProjectHr"style="width: 30%;margin-left: 2%;">
+                        </mat-list-item>
+
+                     
+                     
+                        <mat-divider></mat-divider>
+
+                       
+                        <mat-list-item>
+                            <mat-label>
+                                <div style="margin-left: 60px ;margin-right: 70px;">Project Start Dt: </div>
+                            </mat-label>
+                            <input [matDatepicker]="myDatepicker" placeholder="Choose start date"
+                                formControlName="ProjectstartDt" name="ProjectstartDt"style="width: 30%;margin-left: 2%;">
+                            <mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
+                            <mat-datepicker #myDatepicker></mat-datepicker>
+                        </mat-list-item>
+                       
+                       
+                        <mat-divider></mat-divider>
+
+                        <mat-list-item>
+                            <mat-label>
+                                <div style="margin-left: 60px ;margin-right: 80px;">Project end Dt: </div>
+                            </mat-label>
+                            <input [matDatepicker]="myDatepicker1" placeholder="Choose End date"
+                                formControlName="ProjectEndDt" name="ProjectEndDt"style="width: 30%;margin-left: 2%;">
+                            <mat-datepicker-toggle [for]="myDatepicker1"></mat-datepicker-toggle>
+                            <mat-datepicker #myDatepicker1></mat-datepicker>
+                        </mat-list-item>
+                        <mat-card-actions>
+                            <button mat-button type="submit">CREATE</button>
+                            <button mat-button type="reset">RESET</button>
+                        </mat-card-actions>
+                    </form>
+                </mat-list>
+
+
+            </p>
+        </mat-card-content>
+
+    </mat-card>
+
+    <div class="alert alert-danger" *ngIf="this.error=='Invalid'">
+        <strong>Control </strong> Invalid Input .
+      </div>
+</div>
