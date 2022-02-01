@@ -104,36 +104,7 @@ this.projectForm=this.fb.group({
     }
 
     console.log(JSON.stringify(this.projectForm.value, null, 2));
-  //   console.log("Model"+this.Project.ProjectCost);
-  //   console.log(this.projectForm.value);
-  //   console.log('test');
-      
-  //   if(
-  //     this.projectForm.value.ProjectName!="" &&
-  //     this.projectForm.value.Department!=""&&
-  //     this.projectForm.value.ProjectstartDt!=""&&
-  //     this.projectForm.value.ProjectEndDt!=""&&
-  //     this.projectForm.value.ProjectCost!=""&&
-  //     this.projectForm.value.ProjectHr!=""
-  //    ){
-
-  //     this.http.addProject(this.projectForm.value).subscribe(
-  //       (response) => console.log(response),
-  //       (error) => console.log(error)
-  //     )
-  //     this.dialog.open(DialogDataExampleDialog);
-
-
-  //   }else
-  //   {
-
-  //       this.error="Invalid";
-
-  //   }
-   
-   
-
-  // }
+  
 }}
 @Component({
   selector: 'dialog-data-example-dialog',

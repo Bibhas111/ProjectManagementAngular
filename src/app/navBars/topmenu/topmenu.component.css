@@ -3,6 +3,7 @@
     background-color: rgb(235, 227, 227);
     overflow: hidden;
     border-color: black;
+    border: 2px solid rgb(153, 149, 149);
   }
   
   /* Style the links inside the navigation bar */

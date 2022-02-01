@@ -15,7 +15,7 @@ export class MiningComponent implements OnInit {
  
   ];
 
-  customColors: any;
+customColors: any;
 inProgress:number;
 Completed:number;
   ProjectReport:ProjectReport;
@@ -34,11 +34,11 @@ Completed:number;
     this.customColors = [
       {
         name: "InProgress",
-        value: '#ff0000'
+        value: 'pink'
       },
       {
         name: "Completed",
-        value: 'green'
+        value: 'black'
       }
     ];
     this.httpService.getProjectReport('Mining').subscribe(

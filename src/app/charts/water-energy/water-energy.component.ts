@@ -38,7 +38,7 @@ Completed:number;
       },
       {
         name: "Completed",
-        value: 'green'
+        value: 'blue'
       }
     ];
     this.httpService.getProjectReport('water-Energy').subscribe(
