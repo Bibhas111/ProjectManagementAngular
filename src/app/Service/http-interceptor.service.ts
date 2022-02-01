@@ -44,6 +44,6 @@ export class HttpConfigInterceptor implements HttpInterceptor {
     );
   }
   private logDetails(msg: string) {
-    console.log(msg);
+    console.log("Log Messages :===="+msg);
   }
 } 

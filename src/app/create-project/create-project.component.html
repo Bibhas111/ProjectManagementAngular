@@ -1,7 +1,184 @@
 <app-topmenu></app-topmenu>
 
 
-<div style="width:70%;margin-left:200px;margin-top: 20px;background-color: white;">
+
+<div style="width:70%;margin-left:200px;margin-top: 20px;background-color: white;border-style: ridge;">
+  
+
+    <div class="register-form">
+
+
+        <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+            <h1 style="text-align: center;padding: 1%;">CREATE PROJECT</h1>
+            <div class="row mb-2" style="padding-left: 10%;">
+                <label for="inputProjectName" class="col-sm-2 col-form-label"
+                    style="font-weight:bold;font-size:17px;padding-top:1%">Project Name</label>
+                <div class="col-sm-10">
+                    <input placeholder="Ex. Project Name" id="ProjectName" name="ProjectName"
+                        style="width: 40%;padding-top: 1%;" formControlName="ProjectName" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f['ProjectName'].errors }" />
+
+                    <div *ngIf="submitted && f['ProjectName'].errors" class="invalid-feedback">
+                        <div *ngIf="f['ProjectName'].errors['required']">ProjectName is required
+
+                        </div>
+                        <div *ngIf="f['ProjectName'].errors['minlength']">
+                            Username must be at least 6 characters
+                        </div>
+                    </div>
+                </div>
+
+                <mat-divider></mat-divider>
+
+
+
+
+            </div>
+            <div class="row mb-2" style="padding-top:1%;padding-left: 10%;">
+
+                <label for="Department" class="col-sm-2 col-form-label" style="font-weight:bold;font-size:16px;">
+                    Project department
+                </label>
+
+                <div class="col-sm-10">
+                    <select style="width: 30%;margin-left: 2%;height: 40px;border-color: rgb(207, 202, 200);"
+                        formControlName="Department" name="Department"  [ngClass]="{ 'is-invalid': submitted && f['Department'].errors }">
+                        <option *ngFor="let status of deptdropdown" [value]="status.value" >
+                            {{ status.viewValue }}
+                        </option>
+                    </select>
+
+                    <div *ngIf="submitted && f['Department'].errors" class="invalid-feedback">
+                        <div *ngIf="f['Department'].errors['required']">Department is required
+
+                        </div>
+
+                    </div>
+                </div>
+                <mat-divider></mat-divider>
+
+            </div>
+
+            <div class="row mb-2" style="padding-top:1%;padding-left: 10%;">
+
+                <label for="ProjectStaus" class="col-sm-2 col-form-label" style="font-weight:bold;font-size:16px;">
+                    Project Status
+                </label>
+
+                <div class="col-sm-10">
+                    <select style="width: 30%;margin-left: 2%;height: 40px;border-color: rgb(207, 202, 200);"
+                        formControlName="ProjectStaus" name="ProjectStaus"  [ngClass]="{ 'is-invalid': submitted && f['ProjectStaus'].errors }">
+                        <option *ngFor="let status of statusdropdowm" [value]="status.value" >
+                            {{ status.viewValue }}
+                        </option>
+                    </select>
+
+                    <div *ngIf="submitted && f['ProjectStaus'].errors" class="invalid-feedback">
+                        <div *ngIf="f['ProjectStaus'].errors['required']">Project Status is required
+
+                        </div>
+
+                    </div>
+                </div>
+                <mat-divider></mat-divider>
+
+
+                <div class="row mb-2" style="padding-top:1%;padding-left: 1%;">
+                    <label for="inputProjectCost" class="col-sm-2 col-form-label"
+                        style="font-weight:bold;font-size:17px;padding-top:1%">Project Cost</label>
+                    <div class="col-sm-10">
+                        <input placeholder="Ex. Project Cost" id="ProjectCost" name="ProjectCost"
+                            style="width: 40%;padding-top: 1%;" formControlName="ProjectCost" class="form-control"
+                            [ngClass]="{ 'is-invalid': submitted && f['ProjectCost'].errors }" />
+    
+                        <div *ngIf="submitted && f['ProjectCost'].errors" class="invalid-feedback">
+                            <div *ngIf="f['ProjectCost'].errors['required']">Project Cost is required
+    
+                            </div>
+                            <div *ngIf="f['ProjectCost'].errors['minlength']">
+                                Username must be at least 6 characters
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <mat-divider></mat-divider>
+    
+                    <div class="row mb-2" style="padding-top:1%;padding-left: 1%;">
+                        <label for="inputProjectHrs" class="col-sm-2 col-form-label"
+                            style="font-weight:bold;font-size:17px;padding-top:1%">Project Hr</label>
+                        <div class="col-sm-10">
+                            <input placeholder="Ex. Project Cost" id="ProjectHrs" name="ProjectHr"
+                                style="width: 40%;padding-top: 1%;" formControlName="ProjectHrs" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && f['ProjectHrs'].errors }" />
+        
+                            <div *ngIf="submitted && f['ProjectHrs'].errors" class="invalid-feedback">
+                                <div *ngIf="f['ProjectHrs'].errors['required']">Project Hr. is required
+        
+                                </div>
+                              
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row mb-2" style="padding-top:1%;padding-left: 1%;">
+                        <label for="ProjectstartDt" class="col-sm-2 col-form-label"
+                            style="font-weight:bold;font-size:17px;padding-top:1%">Project Start Dt</label>
+                        <div class="col-sm-10">
+                            
+                                <input [matDatepicker]="myDatepicker" placeholder="Choose start date"
+                                formControlName="ProjectstartDt" name="ProjectstartDt"style="width: 30%;margin-left: 2%;" [ngClass]="{ 'is-invalid': submitted && f['ProjectHrs'].errors }">
+                            <mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
+                            <mat-datepicker #myDatepicker></mat-datepicker>
+
+                            <div *ngIf="submitted && f['ProjectstartDt'].errors" class="invalid-feedback">
+                                <div *ngIf="f['ProjectstartDt'].errors['required']">Project Start. is required
+        
+                                </div>
+                              
+                            </div>
+                        </div>
+                    </div>
+                        <mat-divider></mat-divider>
+    
+                        <div class="row mb-2" style="padding-top:1%;padding-left: 1%;">
+                            <label for="ProjectEndDt" class="col-sm-2 col-form-label"
+                                style="font-weight:bold;font-size:17px;padding-top:1%">Project Start Dt</label>
+                            <div class="col-sm-10">
+                                
+                                    <input [matDatepicker]="myDatepicker1" placeholder="Choose start date"
+                                    formControlName="ProjectEndDt" name="ProjectEndDt"style="width: 30%;margin-left: 2%;" [ngClass]="{ 'is-invalid': submitted && f['ProjectHrs'].errors }">
+                                <mat-datepicker-toggle [for]="myDatepicker1"></mat-datepicker-toggle>
+                                <mat-datepicker #myDatepicker1></mat-datepicker>
+    
+                                <div *ngIf="submitted && f['ProjectEndDt'].errors" class="invalid-feedback">
+                                    <div *ngIf="f['ProjectEndDt'].errors['required']">Project End. is required
+            
+                                    </div>
+                                  
+                                </div>
+                            </div>
+                        </div>
+                            <mat-divider></mat-divider>
+           
+
+            </div>
+            <div class="row" style="text-align:center">
+                <div class="col-sm-10 offset-sm-2">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+
+</div>
+
+
+<!-- <div style="width:70%;margin-left:200px;margin-top: 20px;background-color: white;">
 
 
     <mat-card class="example-card">
@@ -21,7 +198,7 @@
                                 formControlName="ProjectName"  style="width: 30%;margin-left: 2%;"  >
 
                         </mat-list-item>
-
+                   
                         <mat-divider></mat-divider>
 
                         <mat-list-item>
@@ -121,4 +298,4 @@
     <div class="alert alert-danger" *ngIf="this.error=='Invalid'">
         <strong>Control </strong> Invalid Input .
       </div>
-</div>
+</div> -->

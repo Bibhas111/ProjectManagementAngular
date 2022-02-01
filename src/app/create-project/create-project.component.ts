@@ -1,6 +1,6 @@
 
 import { Component, OnInit, Inject } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import {AbstractControl, FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';;
 import { LegendType } from '@swimlane/ngx-charts';
 import { HttpServiceService } from '../Service/http-service.service';
@@ -22,10 +22,44 @@ Project:Project;
   constructor(private fb: FormBuilder, public dialog: MatDialog, private http: HttpServiceService) {
  }
 
+ projectForm :FormGroup= new FormGroup({
+  ProjectName: new FormControl('',),
+  Department: new FormControl(''),
+  ProjectstartDt: new FormControl(''),
+  ProjectEndDt: new FormControl(''),
+  ProjectStaus: new FormControl(''),
+  ProjectCost: new FormControl(''),
+  ProjectHrs: new FormControl('')
+})
+
+submitted = false;
 
   error:string="";
 
   ngOnInit(): void {
+
+
+this.projectForm=this.fb.group({
+
+  ProjectName:['',[Validators.required,Validators.minLength(6), Validators.maxLength(20)]],
+
+  Department:['',Validators.required],
+  ProjectstartDt: ['',Validators.required],
+  ProjectEndDt: ['',Validators.required],
+  ProjectHrs: ['',Validators.required],
+  ProjectStaus:['',Validators.required],
+  ProjectCost:['',[Validators.required],
+  
+
+
+  
+
+  ]
+
+});
+
+
+
     
   }
   statusdropdowm: Status[] = [
@@ -42,56 +76,65 @@ Project:Project;
 
 
 
-  projectForm = this.fb.group({
-
-    ProjectName: new FormControl('',),
-    Department: new FormControl(''),
-    ProjectstartDt: new FormControl(),
-    ProjectEndDt: new FormControl(),
-    ProjectStaus: new FormControl(''),
-    ProjectCost: new FormControl(),
-    ProjectHr: new FormControl()
-  })
+ 
 
 
-  get f() {
+  get f(): { [key: string]: AbstractControl }{
     return this.projectForm.controls;
   }
 
   onSubmit() {
 
     this.Project=this.projectForm.value;
-    console.log("Model"+this.Project.ProjectCost);
+
+    this.submitted = true;
     console.log(this.projectForm.value);
-    console.log('test');
-      
-    if(
-      this.projectForm.value.ProjectName!="" &&
-      this.projectForm.value.Department!=""&&
-      this.projectForm.value.ProjectstartDt!=""&&
-      this.projectForm.value.ProjectEndDt!=""&&
-      this.projectForm.value.ProjectCost!=""&&
-      this.projectForm.value.ProjectHr!=""
-     ){
+    if (this.projectForm.invalid) {
+      return;
+    }
+    else{
+
 
       this.http.addProject(this.projectForm.value).subscribe(
-        (response) => console.log(response),
-        (error) => console.log(error)
-      )
+              (response) => console.log(response),
+              (error) => console.log(error)
+            )
       this.dialog.open(DialogDataExampleDialog);
 
-
-    }else
-    {
-
-        this.error="Invalid";
-
     }
+
+    console.log(JSON.stringify(this.projectForm.value, null, 2));
+  //   console.log("Model"+this.Project.ProjectCost);
+  //   console.log(this.projectForm.value);
+  //   console.log('test');
+      
+  //   if(
+  //     this.projectForm.value.ProjectName!="" &&
+  //     this.projectForm.value.Department!=""&&
+  //     this.projectForm.value.ProjectstartDt!=""&&
+  //     this.projectForm.value.ProjectEndDt!=""&&
+  //     this.projectForm.value.ProjectCost!=""&&
+  //     this.projectForm.value.ProjectHr!=""
+  //    ){
+
+  //     this.http.addProject(this.projectForm.value).subscribe(
+  //       (response) => console.log(response),
+  //       (error) => console.log(error)
+  //     )
+  //     this.dialog.open(DialogDataExampleDialog);
+
+
+  //   }else
+  //   {
+
+  //       this.error="Invalid";
+
+  //   }
    
    
 
-  }
-}
+  // }
+}}
 @Component({
   selector: 'dialog-data-example-dialog',
   templateUrl: 'succes-modal.html',
