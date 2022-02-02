@@ -38,7 +38,7 @@ Completed:number;
       },
       {
         name: "Completed",
-        value: 'black'
+        value: 'purple'
       }
     ];
     this.httpService.getProjectReport('Mining').subscribe(

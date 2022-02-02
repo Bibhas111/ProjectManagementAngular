@@ -33,7 +33,7 @@ Completed:number;
     this.customColors = [
       {
         name: "InProgress",
-        value: '#ff0000'
+        value: 'orange'
       },
       {
         name: "Completed",
