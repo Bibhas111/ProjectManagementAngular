@@ -1,19 +1,14 @@
 import {AfterViewInit, Component, ElementRef, OnInit, ViewChild,Input,SimpleChanges,Inject } from '@angular/core';
-import {MatPaginator} from '@angular/material/paginator';
+import { MatPaginator } from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import { HttpServiceService } from '../Service/http-service.service';
 import { ProjectInfo } from '../model/project-info';
 import { MatDialog,MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CommonServiceService } from '../Service/common-service.service';
+import { MatSort } from '@angular/material/sort'
 import { __asyncDelegator } from 'tslib';
 
-
-
-
-const ELEMENT_DATA: ProjectInfo[] = [
-
-
-];
+const ELEMENT_DATA: ProjectInfo[] = [];
 
 
 @Component({
@@ -33,44 +28,40 @@ export class GridsComponent implements AfterViewInit,OnInit {
     
   }
    @ViewChild(MatPaginator) paginator: MatPaginator;
+   @ViewChild(MatSort) sort: MatSort;
+
   ngAfterViewInit() {
    
-    
+    this.dataSource.paginator=this.paginator;
+    this.dataSource.sort=this.sort;
   }
 
   ngOnChanges(changes: SimpleChanges) {
-
-   
-    
-    let s:string=String(changes["item"].currentValue);
+   let s:string=String(changes["item"].currentValue);
    this.bind(s);
-
-
-
-
-    
-  }
+  
+ }
  
+applyFilter(event: Event){
+const filtervalue=(event.target as HTMLInputElement).value;
+this.dataSource.filter=filtervalue.trim().toLowerCase();
 
+}
   bind(s:string)
-  {
-   
-    this.httpService.getProjectInfo(s).subscribe(
+  {   this.httpService.getProjectInfo(s).subscribe(
       value=>{
                this.ProjectInforesult=value;
-               this.dataSource =new MatTableDataSource<ProjectInfo>(this.ProjectInforesult);
-      
-      }
-      
+               this.dataSource =new MatTableDataSource<ProjectInfo>(this.ProjectInforesult); 
+               this.dataSource.paginator=this.paginator;
+               this.dataSource.sort=this.sort;
+              }
+              
           )
 
   }
 ngOnInit(): void {
- 
-  
-  this.bind(this.item);
-  
-
+ this.bind(this.item);
+ this.dataSource.paginator=this.paginator;
 }
 
 openDialog(row:ProjectInfo) {

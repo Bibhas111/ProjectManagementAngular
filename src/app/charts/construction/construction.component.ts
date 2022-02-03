@@ -14,10 +14,10 @@ export class ConstructionComponent implements OnInit {
  
   ];
 
-  customColors: any;
+customColors: any;
 inProgress:number;
 Completed:number;
-  ProjectReport:ProjectReport;
+ProjectReport:ProjectReport;
   pieChartLabel(series: any[], name: string): string {
       const item = series.filter(data => data.name === name);
       if (item.length > 0) {
@@ -49,8 +49,8 @@ Completed:number;
                   console.log(this.inProgress);
                
                   this.saleData = [
-                    { name: "InProgress", value: this.Completed },
-                    { name: "Completed",  value: this.inProgress},
+                    { name: "InProgress", value: this.inProgress  },
+                    { name: "Completed",  value: this.Completed},
                  
                   ];
              

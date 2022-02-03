@@ -1,10 +1,21 @@
 table {
     width: 100%;
     background-color:rgb(241, 240, 238) ;
+    border: 2px solid rgb(153, 149, 149);
+
   }
   td, th {
     text-align: center !important;
     vertical-align: middle !important;
+}
+
+
+th {
+    text-align: center !important;
+    vertical-align: middle !important;
+    font-size: 16px;
+    font-weight: bold;
+  
 }
 
 .mat-sort-header-container {
@@ -12,7 +23,8 @@ table {
 }
 
 .mat-header-cell {
-    background: rgb(204, 204, 204)
+    background: rgb(177, 174, 174);
+    padding-left: 10px !important;
 }
 
 div {
@@ -22,3 +34,7 @@ div {
     text-align: center;
   }
 
+  .mat-row:hover {
+    background-color: rgb(253, 220, 176);
+    cursor: pointer;
+  }

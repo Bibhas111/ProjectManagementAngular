@@ -27,7 +27,8 @@ mat-grid-tile {
     height: 200px;
 
   }
-  
+
+
   /* Clear floats after the columns */
   .row:after {
     content: "";
@@ -38,4 +39,7 @@ mat-grid-tile {
   .column:hover {
     display: block;
     background-color: red;
+    cursor: pointer;
   }
+
+  

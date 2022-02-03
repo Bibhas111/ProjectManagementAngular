@@ -50,8 +50,8 @@ Completed:number;
                   console.log(this.inProgress);
                
                   this.saleData = [
-                    { name: "InProgress", value: this.Completed },
-                    { name: "Completed",  value: this.inProgress},
+                    { name: "InProgress", value: this.inProgress  },
+                    { name: "Completed",  value: this.Completed},
                  
                   ];
              
