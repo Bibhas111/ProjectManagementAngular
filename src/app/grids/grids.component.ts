@@ -20,17 +20,27 @@ export class GridsComponent implements AfterViewInit,OnInit {
    @Input() item:string;
 
   ProjectType:string;
+  SearchString:string;
   
   ProjectInforesult: ProjectInfo[]=[];
   displayedColumns: string[] = [ 'projectName', 'department', 'projectstartDt','projectEnddt'];
   dataSource = new MatTableDataSource<ProjectInfo>(ELEMENT_DATA);
   constructor(private httpService:HttpServiceService,public dialog: MatDialog,private commonService:CommonServiceService){
-    
+    this.commonService.currentSearchData.subscribe(sata=>{
+
+      
+    });
   }
    @ViewChild(MatPaginator) paginator: MatPaginator;
    @ViewChild(MatSort) sort: MatSort;
 
   ngAfterViewInit() {
+
+    this.commonService.currentSearchData.subscribe(sata=>{
+
+      this.dataSource.filter=sata;
+    });
+   
    
     this.dataSource.paginator=this.paginator;
     this.dataSource.sort=this.sort;
@@ -62,6 +72,10 @@ this.dataSource.filter=filtervalue.trim().toLowerCase();
 ngOnInit(): void {
  this.bind(this.item);
  this.dataSource.paginator=this.paginator;
+
+
+
+
 }
 
 openDialog(row:ProjectInfo) {

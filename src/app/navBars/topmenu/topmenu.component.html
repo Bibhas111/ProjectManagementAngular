@@ -1,7 +1,9 @@
 <div class="topnav">
     <a class="active" routerLink="/home">Home</a>
     <a routerLink="/about">About</a>
-
+   
+    <input #numberQuantity type="search" id="mySearch" name="q" style="margin-top: 15px;margin-left: 60%;width: 15%;border:2px solid #acaaaa;line-height: 35px; border-radius: 25px;">
+    <button  style="margin-top: 10px;margin-left: 5px;background-color:orange;font-weight: 900;border:2px solid #302222;line-height: 30px;" (click)="Search(numberQuantity.value)">Search</button>
   
     <a style="float: right;"routerLink="/create">Create</a>
   </div>
