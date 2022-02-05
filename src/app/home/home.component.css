@@ -28,7 +28,11 @@ mat-grid-tile {
 
   }
 
-
+  .column:hover {
+    background-color: rgb(70, 62, 51);
+    
+  }
+  
   /* Clear floats after the columns */
   .row:after {
     content: "";
