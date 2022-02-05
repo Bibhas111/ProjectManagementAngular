@@ -1,27 +1,61 @@
-<p style="color: white;">Learn one way to build applications with Angular and reuse your code and abilities to build
-  apps for any deployment target. For web, mobile web, native mobile and native desktop.</p>
-  
-  <mat-dialog-content class="mat-typography">
-    <div class="alert alert-warning" role="alert">
-      <h3 style="font-weight: 900;font-size: 40px;width: 100%;">Project Detail </h3>
-    </div>
-  
-    <div style="height:20px"><span style="padding-right: 10px;">Project Name: </span><span style="padding-left:200px">{{data.projectName}}</span> </div> 
-      <mat-divider></mat-divider>
-    <div style="height:20px"> <span style="padding-right: 10px;">Project department:</span> <span style="padding-left:200px">{{data.department}}</span> </div>
-        <mat-divider></mat-divider>
-        <div style="height:20px"> Project start Date: <span style="padding-left:200px">{{data.projectstartDt}}</span></div>
-          <mat-divider></mat-divider>
-          <div style="height:20px">  Project end Date: <span style="padding-left:200px">{{data.projectEnddt}}</span> </div>
-            <mat-divider></mat-divider>
+<h2 mat-dialog-title style="border-bottom: 2px solid royalblue;background-color: sandybrown;">
+{{data.projectName}} >> {{data.department}}
+</h2>
 
- 
-  </mat-dialog-content>
-  <mat-dialog-actions align="end">
-    <button mat-button mat-dialog-close>Cancel</button>
+
+<form [formGroup]="projectForm" style="width: 1000px;" (ngSubmit)="onSubmit()">
+  <mat-grid-list cols="2" rowHeight="35:4">
+<mat-grid-tile>
+  <label for="inputProjectName" style="font-weight:bold;font-size:17px;padding-top:5px;width: 100%">Project Name: </label>
+  <input placeholder="Ex. Project Name" id="ProjectName" name="ProjectName"
+  style="width: 100%;padding-top: 1%;" class="form-control" value={{data.projectName}}>
+</mat-grid-tile>
+
+<mat-grid-tile>
+  <label for="inputdepartment" style="font-weight:bold;font-size:17px;padding-top:5px;width: 100%;padding-left:10px;">Department Name: </label>
+  <input placeholder="Ex. Department Name" id="Department" name="Department"
+  style="width: 100%;padding-top: 1%;"  class="form-control" value={{data.department}} />
+  
+</mat-grid-tile>
+
+  </mat-grid-list>
+
+  <mat-grid-list cols="2" rowHeight="35:4">
+    <mat-grid-tile>
+      <label for="inputprojectstartDt" style="font-weight:bold;font-size:17px;padding-top:5px;width: 100%">Project Start date: </label>
+      <input placeholder="Ex. Project Name" id="projectstartDt" name="projectstartDt"
+      style="width: 100%;padding-top: 1%;" class="form-control" value={{data.projectstartDt}}/>
+    </mat-grid-tile>
     
-  </mat-dialog-actions>
+    <mat-grid-tile>
+      <label for="inputprojectEnddt" style="font-weight:bold;font-size:17px;padding-top:5px;width: 100%;padding-left:10px;">Project End Date: </label>
+      <input placeholder="Ex. Project Name" id="projectEnddt" name="projectEnddt"
+      style="width: 100%;padding-top: 1%;" value={{data.projectEnddt}}/>
+      
+    </mat-grid-tile>
+    
+      </mat-grid-list>
 
+      <mat-grid-list cols="2" rowHeight="35:4">
+        <mat-grid-tile>
+          <label for="inputProjectStatus" style="font-weight:bold;font-size:17px;padding-top:5px;width: 100%">Project Status: </label>
+          <input placeholder="Ex. Project Status" id="ProjectStatus" name="ProjectStatus"
+          style="width: 100%;padding-top: 1%;"  class="form-control" value="Inprogress">
+        </mat-grid-tile>
+        
+        <mat-grid-tile>
+          <label for="inputProjectHour" style="font-weight:bold;font-size:17px;padding-top:5px;width: 100%;padding-left:10px;">Project Hour: </label>
+          <input placeholder="Ex. Project Hour" id="ProjectHour" name="ProjectHour"
+          style="width: 100%;padding-top: 1%;" class="form-control" value=213 />
+          
+        </mat-grid-tile>
+        
+          </mat-grid-list>
+         <div style="float: center;margin-left: 20px;"><button type="submit" class="btn btn-primary" >UPDATE</button> 
+            <span style="padding-left: 10px;"><button type="submit"  style="float: center;" class="btn btn-warning">DELETE</button> </span> 
+         </div>
+  <mat-divider></mat-divider>
+  
+   
+  </form>
 
-  
-  

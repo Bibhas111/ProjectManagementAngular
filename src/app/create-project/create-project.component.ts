@@ -33,35 +33,20 @@ Project:Project;
 })
 
 submitted = false;
+error:string="";
 
-  error:string="";
-
-  ngOnInit(): void {
-
-
+ngOnInit(): void {
 this.projectForm=this.fb.group({
-
   ProjectName:['',[Validators.required,Validators.minLength(6), Validators.maxLength(20)]],
-
   Department:['',Validators.required],
   ProjectstartDt: ['',Validators.required],
   ProjectEndDt: ['',Validators.required],
   ProjectHrs: ['',Validators.required],
   ProjectStaus:['',Validators.required],
-  ProjectCost:['',[Validators.required],
-  
+  ProjectCost:['',[Validators.required]]
+}); }
 
 
-  
-
-  ]
-
-});
-
-
-
-    
-  }
   statusdropdowm: Status[] = [
     { value: 'Inprogress', viewValue: 'Inprogress' },
     { value: 'Complete', viewValue: 'Completed' },
@@ -71,8 +56,7 @@ this.projectForm=this.fb.group({
     { value: 'Construction', viewValue: 'Construction' },
     { value: 'Mining', viewValue: 'Mining' },
     { value: 'water-Energy', viewValue: 'Water energy' },
-
-  ];
+];
 
 
 
@@ -84,18 +68,13 @@ this.projectForm=this.fb.group({
   }
 
   onSubmit() {
-
     this.Project=this.projectForm.value;
-
     this.submitted = true;
     console.log(this.projectForm.value);
     if (this.projectForm.invalid) {
       return;
     }
-    else{
-
-
-      this.http.addProject(this.projectForm.value).subscribe(
+    else{ this.http.addProject(this.projectForm.value).subscribe(
               (response) => console.log(response),
               (error) => console.log(error)
             )

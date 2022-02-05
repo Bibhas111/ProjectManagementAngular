@@ -7,7 +7,8 @@ import { MatDialog,MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CommonServiceService } from '../Service/common-service.service';
 import { MatSort } from '@angular/material/sort'
 import { __asyncDelegator } from 'tslib';
-
+import {AbstractControl, FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { Project } from '../model/project';
 const ELEMENT_DATA: ProjectInfo[] = [];
 
 
@@ -98,16 +99,76 @@ openDialog(row:ProjectInfo) {
   
 }
 
+export interface Status {
+  value: string;
+  viewValue: string;
+}
 @Component({
   selector: 'dialog-content-example-dialog',
   templateUrl: 'dialog-content-example-dialog.html',
   styleUrls: ['./grids.component.css']
 })
-export class DialogContentExampleDialog {
+
+
+export class DialogContentExampleDialog implements OnInit {
   ProjectInfo :ProjectInfo;
-constructor(@Inject(MAT_DIALOG_DATA) public data: ProjectInfo){
+  Project:Project;
+  projectForm :FormGroup= new FormGroup({
+    ProjectName: new FormControl('',),
+    Department: new FormControl(''),
+    ProjectstartDt: new FormControl(''),
+    ProjectEndDt: new FormControl(''),
+    ProjectStaus: new FormControl(''),
+    ProjectCost: new FormControl(''),
+    ProjectHrs: new FormControl('')
+  })
+
+submitted = false;
+error:string="";
+constructor(private fb: FormBuilder,@Inject(MAT_DIALOG_DATA) public data: ProjectInfo){
   
- 
+
 }
 
+ngOnInit(): void {
+  this.projectForm=this.fb.group({
+    ProjectName:['',[Validators.required,Validators.minLength(6), Validators.maxLength(20)]],
+    Department:['',Validators.required],
+    ProjectstartDt: ['',Validators.required],
+    ProjectEndDt: ['',Validators.required],
+    ProjectHrs: ['',Validators.required],
+    ProjectStaus:['',Validators.required],
+    ProjectCost:['',[Validators.required]]
+  }); }
+
+  statusdropdowm: Status[] = [
+    { value: 'Inprogress', viewValue: 'Inprogress' },
+    { value: 'Complete', viewValue: 'Completed' },
+
+  ];
+  deptdropdown: Status[] = [
+    { value: 'Construction', viewValue: 'Construction' },
+    { value: 'Mining', viewValue: 'Mining' },
+    { value: 'water-Energy', viewValue: 'Water energy' },
+];
+
+
+  get f(): { [key: string]: AbstractControl }{
+    return this.projectForm.controls;
+  }
+  onSubmit() {
+    this.Project=this.projectForm.value;
+    this.submitted = true;
+    console.log(this.projectForm.value);
+    if (this.projectForm.invalid) {
+      return;
+    }
+    else{
+
+
+    }
+
+    console.log(JSON.stringify(this.projectForm.value, null, 2));
+  
+}
 }

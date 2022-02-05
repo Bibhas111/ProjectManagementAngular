@@ -38,3 +38,12 @@ div {
     background-color: rgb(253, 220, 176);
     cursor: pointer;
   }
+
+  .area{
+
+padding:1 rem;
+height:250px;
+padding-top:10px;
+border-style:groove;
+
+  }
